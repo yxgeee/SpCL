@@ -3,9 +3,9 @@
 
 # Self-paced Contrastive Learning
 
-This repository contains the implementation of [Self-paced Contrastive Learning with Hybrid Memory for Domain Adaptive Object Re-ID](https://arxiv.org/abs/2006.02713), which provides state-of-the-art performances on both **unsupervised domain adaptation** tasks and **unsupervised learning** tasks for object re-ID, including person re-ID and vehicle re-ID.
-
 [[Paper]](https://arxiv.org/abs/2006.02713) [[Project]](https://yxgeee.github.io/projects/spcl.html)
+
+This repository contains the implementation of [Self-paced Contrastive Learning with Hybrid Memory for Domain Adaptive Object Re-ID](https://arxiv.org/abs/2006.02713), which provides state-of-the-art performances on both **unsupervised domain adaptation** tasks and **unsupervised learning** tasks for object re-ID, including person re-ID and vehicle re-ID.
 
 ![framework](figs/framework.png)
 
