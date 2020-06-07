@@ -33,7 +33,7 @@ class ResNet(nn.Module):
         resnet.layer4[0].conv2.stride = (1,1)
         resnet.layer4[0].downsample[0].stride = (1,1)
         self.base = nn.Sequential(
-            resnet.conv1, resnet.bn1, resnet.maxpool, # no relu
+            resnet.conv1, resnet.bn1, resnet.relu, resnet.maxpool, 
             resnet.layer1, resnet.layer2, resnet.layer3, resnet.layer4)
         self.gap = nn.AdaptiveAvgPool2d(1)
 
