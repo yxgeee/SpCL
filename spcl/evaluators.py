@@ -116,7 +116,7 @@ class Evaluator(object):
             return results
 
         print('Applying person re-ranking ...')
-        distmat_qq = pairwise_distance(features, query, query)
-        distmat_gg = pairwise_distance(features, gallery, gallery)
+        distmat_qq, _, _ = pairwise_distance(features, query, query)
+        distmat_gg, _, _ = pairwise_distance(features, gallery, gallery)
         distmat = re_ranking(distmat.numpy(), distmat_qq.numpy(), distmat_gg.numpy())
         return evaluate_all(query_features, gallery_features, distmat, query=query, gallery=gallery, cmc_flag=cmc_flag)

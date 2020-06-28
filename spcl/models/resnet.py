@@ -33,7 +33,7 @@ class ResNet(nn.Module):
         resnet.layer4[0].conv2.stride = (1,1)
         resnet.layer4[0].downsample[0].stride = (1,1)
         self.base = nn.Sequential(
-            resnet.conv1, resnet.bn1, resnet.relu, resnet.maxpool, 
+            resnet.conv1, resnet.bn1, resnet.relu, resnet.maxpool,
             resnet.layer1, resnet.layer2, resnet.layer3, resnet.layer4)
         self.gap = nn.AdaptiveAvgPool2d(1)
 
@@ -122,11 +122,10 @@ class ResNet(nn.Module):
         resnet = ResNet.__factory[self.depth](pretrained=self.pretrained)
         self.base[0].load_state_dict(resnet.conv1.state_dict())
         self.base[1].load_state_dict(resnet.bn1.state_dict())
-        self.base[2].load_state_dict(resnet.maxpool.state_dict())
-        self.base[3].load_state_dict(resnet.layer1.state_dict())
-        self.base[4].load_state_dict(resnet.layer2.state_dict())
-        self.base[5].load_state_dict(resnet.layer3.state_dict())
-        self.base[6].load_state_dict(resnet.layer4.state_dict())
+        self.base[4].load_state_dict(resnet.layer1.state_dict())
+        self.base[5].load_state_dict(resnet.layer2.state_dict())
+        self.base[6].load_state_dict(resnet.layer3.state_dict())
+        self.base[7].load_state_dict(resnet.layer4.state_dict())
 
 def resnet18(**kwargs):
     return ResNet(18, **kwargs)

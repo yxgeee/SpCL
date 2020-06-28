@@ -118,8 +118,6 @@ class ResNetIBN(nn.Module):
         resnet = ResNetIBN.__factory[self.depth](pretrained=self.pretrained)
         self.base[0].load_state_dict(resnet.conv1.state_dict())
         self.base[1].load_state_dict(resnet.bn1.state_dict())
-        self.base[2].load_state_dict(resnet.relu.state_dict())
-        self.base[3].load_state_dict(resnet.maxpool.state_dict())
         self.base[4].load_state_dict(resnet.layer1.state_dict())
         self.base[5].load_state_dict(resnet.layer2.state_dict())
         self.base[6].load_state_dict(resnet.layer3.state_dict())
