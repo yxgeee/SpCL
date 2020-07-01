@@ -9,6 +9,9 @@ This repository contains the implementation of [Self-paced Contrastive Learning 
 
 ![framework](figs/framework.png)
 
+### Updates
+
+[2020-07-01] We did the code refactoring to support distributed training, stronger performances and more features. Please see [OpenUnReID](https://github.com/open-mmlab/OpenUnReID).
 
 ## Requirements
 
