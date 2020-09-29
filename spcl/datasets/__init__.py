@@ -1,7 +1,6 @@
 from __future__ import absolute_import
 import warnings
 
-from .dukemtmc import DukeMTMC
 from .market1501 import Market1501
 from .msmt17 import MSMT17
 from .personx import PersonX
@@ -12,7 +11,6 @@ from .vehiclex import VehicleX
 
 __factory = {
     'market1501': Market1501,
-    'dukemtmc': DukeMTMC,
     'msmt17': MSMT17,
     'personx': PersonX,
     'veri': VeRi,
