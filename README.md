@@ -30,12 +30,10 @@ python setup.py install
 ```shell
 cd examples && mkdir data
 ```
-Download the person datasets [DukeMTMC-reID](https://arxiv.org/abs/1609.01775), [Market-1501](https://drive.google.com/file/d/0B8-rUzbwVRk0c054eEozWG9COHM/view), [MSMT17](https://arxiv.org/abs/1711.08565), [PersonX](https://github.com/sxzrt/Instructions-of-the-PersonX-dataset#a-more-chanllenging-subset-of-personx), and the vehicle datasets [VehicleID](https://www.pkuml.org/resources/pku-vehicleid.html), [VeRi-776](https://github.com/JDAI-CV/VeRidataset), [VehicleX](https://www.aicitychallenge.org/2020-track2-download/).
+Download the person datasets [Market-1501](https://drive.google.com/file/d/0B8-rUzbwVRk0c054eEozWG9COHM/view), [MSMT17](https://arxiv.org/abs/1711.08565), [PersonX](https://github.com/sxzrt/Instructions-of-the-PersonX-dataset#a-more-chanllenging-subset-of-personx), and the vehicle datasets [VehicleID](https://www.pkuml.org/resources/pku-vehicleid.html), [VeRi-776](https://github.com/JDAI-CV/VeRidataset), [VehicleX](https://www.aicitychallenge.org/2020-track2-download/).
 Then unzip them under the directory like
 ```
 SpCL/examples/data
-├── dukemtmc
-│   └── DukeMTMC-reID
 ├── market1501
 │   └── Market-1501-v15.09.15
 ├── msmt17
@@ -69,7 +67,7 @@ ImageNet-pretrained models for **ResNet-50** will be automatically downloaded in
 
 We utilize 4 GTX-1080TI GPUs for training. **Note that**
 
-+ use `--iters 400` (default) for DukeMTMC-reID, Market-1501 and PersonX datasets, and `--iters 800` for MSMT17, VeRi-776, VehicleID and VehicleX datasets;
++ use `--iters 400` (default) for Market-1501 and PersonX datasets, and `--iters 800` for MSMT17, VeRi-776, VehicleID and VehicleX datasets;
 + use `--width 128 --height 256` (default) for person datasets, and `--height 224 --width 224` for vehicle datasets;
 + use `-a resnet50` (default) for the backbone of ResNet-50, and `-a resnet_ibn50a` for the backbone of IBN-ResNet.
 
@@ -79,13 +77,13 @@ To train the model(s) in the paper, run this command:
 CUDA_VISIBLE_DEVICES=0,1,2,3 python examples/spcl_train_uda.py -ds $SOURCE_DATASET -dt $TARGET_DATASET --logs-dir $PATH_LOGS
 ```
 
-*Example #1:* DukeMTMC-reID -> Market-1501
+*Example #1:* PersonX -> Market-1501
 ```shell
-CUDA_VISIBLE_DEVICES=0,1,2,3 python examples/spcl_train_uda.py -ds dukemtmc -dt market1501 --logs-dir logs/spcl_uda/duke2market_resnet50
+CUDA_VISIBLE_DEVICES=0,1,2,3 python examples/spcl_train_uda.py -ds personx -dt market1501 --logs-dir logs/spcl_uda/personx2market_resnet50
 ```
-*Example #2:* DukeMTMC-reID -> MSMT17
+*Example #2:* Market-1501 -> MSMT17
 ```shell
-CUDA_VISIBLE_DEVICES=0,1,2,3 python examples/spcl_train_uda.py -ds dukemtmc -dt msmt17 --iters 800 --logs-dir logs/spcl_uda/duke2msmt_resnet50
+CUDA_VISIBLE_DEVICES=0,1,2,3 python examples/spcl_train_uda.py -ds market1501 -dt msmt17 --iters 800 --logs-dir logs/spcl_uda/market2msmt_resnet50
 ```
 *Example #3:* VehicleID -> VeRi
 ```shell
@@ -98,9 +96,9 @@ To train the model(s) in the paper, run this command:
 CUDA_VISIBLE_DEVICES=0,1,2,3 python examples/spcl_train_usl.py -d $DATASET --logs-dir $PATH_LOGS
 ```
 
-*Example #1:* DukeMTMC-reID
+*Example #1:* Market-1501
 ```shell
-CUDA_VISIBLE_DEVICES=0,1,2,3 python examples/spcl_train_usl.py -d dukemtmc --logs-dir logs/spcl_usl/duke_resnet50
+CUDA_VISIBLE_DEVICES=0,1,2,3 python examples/spcl_train_usl.py -d market1501 --logs-dir logs/spcl_usl/market_resnet50
 ```
 
 
@@ -126,12 +124,12 @@ To evaluate the model on the source-domain dataset, run:
 CUDA_VISIBLE_DEVICES=0 python examples/test.py --dsbn --test-source -d $DATASET --resume $PATH_MODEL
 ```
 
-*Example #1:* DukeMTMC-reID -> Market-1501
+*Example #1:* Market-1501 -> MSMT17
 ```shell
 # test on the target domain
-CUDA_VISIBLE_DEVICES=0 python examples/test.py --dsbn -d market1501 --resume logs/spcl_uda/duke2market_resnet50/model_best.pth.tar
+CUDA_VISIBLE_DEVICES=0 python examples/test.py --dsbn -d msmt17 --resume logs/spcl_uda/market2msmt_resnet50/model_best.pth.tar
 # test on the source domain
-CUDA_VISIBLE_DEVICES=0 python examples/test.py --dsbn --test-source -d dukemtmc --resume logs/spcl_uda/duke2market_resnet50/model_best.pth.tar
+CUDA_VISIBLE_DEVICES=0 python examples/test.py --dsbn --test-source -d market1501 --resume logs/spcl_uda/market2msmt_resnet50/model_best.pth.tar
 ```
 
 ### Unsupervised Learning
@@ -140,9 +138,9 @@ To evaluate the model, run:
 CUDA_VISIBLE_DEVICES=0 python examples/test.py -d $DATASET --resume $PATH
 ```
 
-*Example #1:* DukeMTMC-reID
+*Example #1:* Market-1501
 ```shell
-CUDA_VISIBLE_DEVICES=0 python examples/test.py -d dukemtmc --resume logs/spcl_usl/duke_resnet50/model_best.pth.tar
+CUDA_VISIBLE_DEVICES=0 python examples/test.py -d market1501 --resume logs/spcl_usl/market_resnet50/model_best.pth.tar
 ```
 
 ## Trained Models
