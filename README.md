@@ -11,6 +11,8 @@ This repository contains the implementation of [Self-paced Contrastive Learning 
 
 ### Updates
 
+[2020-09-25] `SpCL` has been accepted by NeurIPS on the condition that experiments on DukeMTMC-reID dataset should be removed , since the dataset has been taken down and should no longer be used.
+
 [2020-07-01] We did the code refactoring to support distributed training, stronger performances and more features. Please see [OpenUnReID](https://github.com/open-mmlab/OpenUnReID).
 
 ## Requirements
