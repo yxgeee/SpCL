@@ -100,7 +100,7 @@ if __name__ == '__main__':
     parser.add_argument('--height', type=int, default=256, help="input height")
     parser.add_argument('--width', type=int, default=128, help="input width")
     # model
-    parser.add_argument('-a', '--arch', type=str, required=True,
+    parser.add_argument('-a', '--arch', type=str, default='resnet50',
                         choices=models.names())
     parser.add_argument('--features', type=int, default=0)
     parser.add_argument('--dropout', type=float, default=0)

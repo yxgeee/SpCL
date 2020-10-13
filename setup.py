@@ -10,7 +10,7 @@ setup(name='SpCL',
       install_requires=[
           'numpy', 'torch', 'torchvision',
           'six', 'h5py', 'Pillow', 'scipy',
-          'scikit-learn', 'metric-learn', 'faiss'],
+          'scikit-learn', 'metric-learn', 'faiss_gpu'],
       packages=find_packages(),
       keywords=[
           'Unsupervised Learning',
